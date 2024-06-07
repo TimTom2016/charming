@@ -1,5 +1,5 @@
-use serde::Serialize;
-
+use serde::{Deserialize, Serialize};
+#[derive(Clone,Deserialize)]
 pub enum Sort {
     Ascending,
     Descending,

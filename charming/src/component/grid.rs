@@ -1,11 +1,11 @@
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 use crate::{
     datatype::CompositeValue,
     element::{Color, Padding, TextStyle, Trigger},
 };
 
-#[derive(Serialize)]
+#[derive(Serialize,Clone,Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct GridTooltip {
     /// Whether to show the tooltip component.
@@ -127,7 +127,7 @@ impl GridTooltip {
     }
 }
 
-#[derive(Serialize)]
+#[derive(Serialize,Clone,Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Grid {
     /// Component ID.

@@ -1,8 +1,8 @@
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 use super::RawString;
 
-#[derive(Serialize)]
+#[derive(Serialize,Clone,Deserialize)]
 #[serde(untagged)]
 pub enum Formatter {
     String(String),

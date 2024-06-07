@@ -1,6 +1,6 @@
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
-#[derive(Serialize)]
+#[derive(Serialize,Clone,Deserialize)]
 pub enum GeoMapOpt {
     #[serde(rename = "geoJSON")]
     GeoJson {
@@ -20,7 +20,7 @@ where
     }
 }
 
-#[derive(Serialize)]
+#[derive(Serialize,Clone,Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct GeoMap {
     #[serde(skip_serializing_if = "Option::is_none")]

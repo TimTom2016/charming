@@ -1,9 +1,9 @@
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 use crate::element::{AxisLabel, AxisLine, AxisType, BoundaryGap, NameLocation, TextStyle};
 
 /// Radius axis in polar coordinate.
-#[derive(Serialize)]
+#[derive(Serialize,Clone,Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct RadiusAxis {
     #[serde(skip_serializing_if = "Option::is_none")]

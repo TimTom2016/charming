@@ -1,6 +1,7 @@
-use serde::{ser::SerializeSeq, Serialize};
+use serde::{ser::SerializeSeq, Deserialize, Serialize};
 
 /// Padding space around content.
+#[derive(Clone,Deserialize)]
 pub enum Padding {
     /// Set padding of all sides.
     Single(f64),

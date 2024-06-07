@@ -1,6 +1,6 @@
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
-#[derive(Serialize)]
+#[derive(Serialize,Clone,Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct SplitArea {
     #[serde(skip_serializing_if = "Option::is_none")]

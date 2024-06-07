@@ -1,4 +1,4 @@
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 use crate::element::{
     AxisLabel, AxisLine, AxisPointer, AxisTick, AxisType, BoundaryGap, MinorSplitLine, MinorTick,
@@ -6,7 +6,7 @@ use crate::element::{
 };
 
 /// The angle axis in Polar Coordinate.
-#[derive(Serialize)]
+#[derive(Serialize,Clone,Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct AngleAxis {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -23,6 +23,9 @@ pub struct AngleAxis {
     /// Starting angle of axis, default to 90.
     #[serde(skip_serializing_if = "Option::is_none")]
     start_angle: Option<f64>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    end_angle: Option<f64>,
 
     /// Whether the direction of axis is clockwise, default to true.
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -97,6 +100,9 @@ pub struct AngleAxis {
 
     #[serde(skip_serializing_if = "Vec::is_empty")]
     data: Vec<String>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    show: Option<bool>,
 }
 
 impl AngleAxis {
@@ -106,6 +112,7 @@ impl AngleAxis {
             id: None,
             polar_index: None,
             start_angle: None,
+            end_angle: None,
             clockwise: None,
             type_: None,
             zlevel: None,
@@ -129,6 +136,7 @@ impl AngleAxis {
             minor_split_line: None,
             split_area: None,
             data: vec![],
+            show: None,
         }
     }
 
@@ -149,6 +157,10 @@ impl AngleAxis {
 
     pub fn start_angle<F: Into<f64>>(mut self, start_angle: F) -> Self {
         self.start_angle = Some(start_angle.into());
+        self
+    }
+    pub fn end_angle<F: Into<f64>>(mut self, start_angle: F) -> Self {
+        self.end_angle = Some(start_angle.into());
         self
     }
 
@@ -264,6 +276,10 @@ impl AngleAxis {
 
     pub fn data<S: Into<String>>(mut self, data: Vec<S>) -> Self {
         self.data = data.into_iter().map(|s| s.into()).collect();
+        self
+    }
+    pub fn show<S: Into<bool>>(mut self, bool: S) -> Self {
+        self.show = Some(bool.into());
         self
     }
 }

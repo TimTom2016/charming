@@ -1,11 +1,11 @@
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 use crate::{
     datatype::{DataFrame, DataPoint},
     element::{ColorBy, CoordinateSystem},
 };
 
-#[derive(Serialize)]
+#[derive(Serialize,Clone,Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Candlestick {
     #[serde(rename = "type")]

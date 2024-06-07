@@ -38,7 +38,6 @@ use charming::{
     series::{Pie, PieRoseType},
     Chart, ImageRenderer
 };
-
 fn main() {
     let chart = Chart::new()
         .legend(Legend::new().top("bottom"))
@@ -101,7 +100,7 @@ use component::{
 };
 use datatype::Dataset;
 use element::{process_raw_strings, AxisPointer, Color, MarkLine, Tooltip};
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 use series::Series;
 
 /**
@@ -238,7 +237,7 @@ mouse pointer.
 [`Toolbox`] is a feature toolbox that includes data view, save as image, data
 zoom, restore, and reset.
  */
-#[derive(Serialize)]
+#[derive(Serialize,Clone,Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Chart {
     #[serde(skip_serializing_if = "Vec::is_empty")]

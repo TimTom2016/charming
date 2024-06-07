@@ -1,4 +1,4 @@
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 use crate::{
     datatype::DataFrame,
@@ -7,7 +7,7 @@ use crate::{
     },
 };
 
-#[derive(Serialize)]
+#[derive(Serialize,Clone,Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PictorialBar {
     #[serde(rename = "type")]

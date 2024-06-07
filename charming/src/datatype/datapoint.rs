@@ -1,12 +1,12 @@
 use std::fmt::Debug;
 
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 use crate::element::ItemStyle;
 
 use super::CompositeValue;
 
-#[derive(Serialize)]
+#[derive(Serialize,Clone,Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct DataPointItem {
     value: CompositeValue,
@@ -72,7 +72,7 @@ where
     }
 }
 
-#[derive(Debug, PartialEq, Serialize)]
+#[derive(Debug, PartialEq, Serialize,Clone,Deserialize)]
 #[serde(untagged)]
 pub enum DataPoint {
     Value(CompositeValue),

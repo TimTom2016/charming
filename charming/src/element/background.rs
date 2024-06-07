@@ -1,8 +1,8 @@
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 use super::{area_style::AreaStyle, border_type::BorderType, color::Color, line_style::LineStyle};
 
-#[derive(Serialize)]
+#[derive(Serialize,Clone,Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct BackgroundStyle {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -67,7 +67,7 @@ impl BackgroundStyle {
     }
 }
 
-#[derive(Serialize)]
+#[derive(Serialize,Clone,Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct DataBackground {
     #[serde(skip_serializing_if = "Option::is_none")]

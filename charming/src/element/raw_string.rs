@@ -1,8 +1,8 @@
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 pub static RAW_MARK: &str = "#*#*#*#";
 
-#[derive(Debug)]
+#[derive(Debug,Clone,Deserialize)]
 pub struct RawString(String);
 
 impl Serialize for RawString {

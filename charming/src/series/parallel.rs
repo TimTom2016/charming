@@ -1,18 +1,18 @@
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 use crate::{
     datatype::{DataFrame, DataPoint},
     element::{ColorBy, CoordinateSystem, Emphasis, LineStyle},
 };
 
-#[derive(Serialize)]
+#[derive(Serialize,Clone,Deserialize)]
 #[serde(rename_all = "snake_case")]
 pub enum ProgressiveChunkMode {
     Sequential,
     Mod,
 }
 
-#[derive(Serialize)]
+#[derive(Serialize,Clone,Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Parallel {
     #[serde(rename = "type")]

@@ -1,10 +1,10 @@
-use serde::{ser::SerializeSeq, Serialize};
+use serde::{ser::SerializeSeq, Deserialize, Serialize};
 
 use crate::{
     datatype::CompositeValue,
     element::{BoundaryGap, ColorBy, CoordinateSystem, Label},
 };
-
+#[derive(Clone,Deserialize)]
 pub struct ThemeRiverData {
     date: CompositeValue,
     value: CompositeValue,
@@ -47,7 +47,7 @@ where
     }
 }
 
-#[derive(Serialize)]
+#[derive(Serialize,Clone,Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ThemeRiver {
     #[serde(rename = "type")]

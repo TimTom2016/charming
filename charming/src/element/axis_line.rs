@@ -1,7 +1,7 @@
-use serde::{ser::SerializeSeq, Serialize};
+use serde::{ser::SerializeSeq, Deserialize, Serialize};
 
 use super::color::Color;
-
+#[derive(Clone,Deserialize)]
 pub struct ColorSegment(f64, Color);
 
 impl Serialize for ColorSegment {
@@ -25,7 +25,7 @@ impl From<(f64, Color)> for ColorSegment {
     }
 }
 
-#[derive(Serialize)]
+#[derive(Serialize,Clone,Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct AxisLineStyle {
     color: Vec<ColorSegment>,
@@ -110,7 +110,7 @@ impl From<(f64, &str, f64)> for AxisLineStyle {
     }
 }
 
-#[derive(Serialize)]
+#[derive(Serialize,Clone,Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct AxisLine {
     #[serde(skip_serializing_if = "Option::is_none")]

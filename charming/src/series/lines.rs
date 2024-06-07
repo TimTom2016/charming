@@ -1,8 +1,8 @@
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 use crate::element::{ColorBy, CoordinateSystem, Emphasis, Label, LabelLayout, LineStyle, Symbol};
 
-#[derive(Serialize)]
+#[derive(Serialize,Clone,Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Lines {
     #[serde(rename = "type")]

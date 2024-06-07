@@ -1,13 +1,13 @@
 use std::vec;
 
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 use crate::{
     datatype::{DataFrame, DataPoint},
     element::{BackgroundStyle, ColorBy, CoordinateSystem, Emphasis, ItemStyle, Label, MarkLine},
 };
 
-#[derive(Serialize)]
+#[derive(Serialize,Clone,Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Bar {
     #[serde(rename = "type")]

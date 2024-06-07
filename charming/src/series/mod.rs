@@ -1,4 +1,4 @@
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 pub mod bar;
 pub mod bar3d;
@@ -47,7 +47,7 @@ pub use sunburst::*;
 pub use theme_river::*;
 pub use tree::*;
 pub use treemap::*;
-
+#[derive(Clone,Deserialize)]
 pub enum Series {
     Bar(bar::Bar),
     Bar3d(bar3d::Bar3d),

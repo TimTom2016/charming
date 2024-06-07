@@ -1,7 +1,7 @@
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 /// Type of axis.
-#[derive(Serialize)]
+#[derive(Serialize,Clone,Deserialize)]
 #[serde(rename_all = "snake_case")]
 pub enum AxisType {
     /// Numerical axis, suitable for continuous data.

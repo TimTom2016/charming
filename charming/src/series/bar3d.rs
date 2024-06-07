@@ -1,11 +1,11 @@
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 use crate::{
     datatype::{CompositeValue, DataFrame, DataPoint},
     element::{CoordinateSystem, DimensionEncode},
 };
 
-#[derive(Serialize)]
+#[derive(Serialize,Clone,Deserialize)]
 pub struct Bar3d {
     #[serde(rename = "type")]
     type_: String,

@@ -3,7 +3,7 @@ use serde::Serialize;
 use serde_wasm_bindgen::to_value;
 use wasm_bindgen::prelude::*;
 use wasm_bindgen::JsValue;
-
+use web_sys::Element;
 pub struct WasmRenderer {
     theme: Theme,
     width: u32,
@@ -46,7 +46,26 @@ impl WasmRenderer {
             })
             .unwrap(),
         );
-        echarts.set_option(to_value(chart).unwrap());
+
+        let options = to_value(chart).unwrap();
+        echarts.set_option(options);
+
+        Ok(echarts)
+    }
+    pub fn render_element(&self, element: Element, chart: &Chart) -> Result<Echarts, EchartsError> {
+
+        let echarts = init(
+            &element,
+            self.theme.to_str().0,
+            to_value(&ChartSize {
+                width: self.width as u32,
+                height: self.height as u32,
+            })
+                .unwrap(),
+        );
+
+        let options = to_value(chart).unwrap();
+        echarts.set_option(options);
 
         Ok(echarts)
     }

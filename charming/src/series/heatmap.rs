@@ -1,11 +1,11 @@
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 use crate::{
     datatype::DataFrame,
     element::{CoordinateSystem, Emphasis, ItemStyle, Label},
 };
 
-#[derive(Serialize)]
+#[derive(Serialize,Clone,Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Heatmap {
     #[serde(rename = "type")]

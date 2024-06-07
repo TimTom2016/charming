@@ -1,10 +1,10 @@
-use serde::{ser::SerializeSeq, Serialize};
+use serde::{ser::SerializeSeq, Deserialize, Serialize};
 
 use crate::element::RawString;
 
 use super::{DataSource, Dimension};
 
-#[derive(Serialize)]
+#[derive(Serialize,Clone,Deserialize)]
 pub struct Source {
     source: DataSource,
 
@@ -62,7 +62,7 @@ where
     }
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize,Clone,Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Transform {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -123,7 +123,7 @@ impl From<&str> for Transform {
         Self::new().transform(transform)
     }
 }
-
+#[derive(Clone,Deserialize)]
 pub struct Dataset {
     sources: Vec<Source>,
     transforms: Vec<Transform>,

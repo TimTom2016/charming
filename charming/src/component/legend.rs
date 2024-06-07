@@ -1,11 +1,11 @@
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 use crate::{
     datatype::CompositeValue,
     element::{Color, Icon, ItemStyle, LabelAlign, LineStyle, Orient, Padding, TextStyle},
 };
 
-#[derive(Serialize)]
+#[derive(Serialize,Clone,Deserialize)]
 #[serde(rename_all = "snake_case")]
 pub enum LegendType {
     /// Simple legend.
@@ -15,7 +15,7 @@ pub enum LegendType {
     Scroll,
 }
 
-#[derive(Serialize)]
+#[derive(Serialize,Clone,Deserialize)]
 #[serde(rename_all = "snake_case")]
 pub enum LegendSelectedMode {
     /// Multiple selection.
@@ -25,7 +25,7 @@ pub enum LegendSelectedMode {
     Single,
 }
 
-#[derive(Serialize)]
+#[derive(Serialize,Clone,Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct LegendItem {
     pub name: String,
@@ -67,7 +67,7 @@ impl From<(String, String)> for LegendItem {
     }
 }
 
-#[derive(Serialize)]
+#[derive(Serialize,Clone,Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Legend {
     /// Type of legend.

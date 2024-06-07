@@ -1,10 +1,10 @@
-use serde::{ser::SerializeSeq, Serialize};
+use serde::{ser::SerializeSeq, Deserialize, Serialize};
 
 use crate::datatype::CompositeValue;
 
 use super::{label::Label, line_style::LineStyle, symbol::Symbol};
 
-#[derive(Serialize)]
+#[derive(Serialize,Clone,Deserialize)]
 #[serde(rename_all = "snake_case")]
 pub enum MarkLineDataType {
     Min,
@@ -25,7 +25,7 @@ impl From<&str> for MarkLineDataType {
     }
 }
 
-#[derive(Serialize)]
+#[derive(Serialize,Clone,Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct MarkLineData {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -123,7 +123,7 @@ impl From<(&str, &str)> for MarkLineData {
         Self::new().type_(type_).name(name)
     }
 }
-
+#[derive(Clone,Deserialize)]
 pub enum MarkLineVariant {
     Simple(MarkLineData),
     StartToEnd(MarkLineData, MarkLineData),
@@ -143,7 +143,7 @@ impl Serialize for MarkLineVariant {
     }
 }
 
-#[derive(Serialize)]
+#[derive(Serialize,Clone,Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct MarkLine {
     #[serde(skip_serializing_if = "Option::is_none")]

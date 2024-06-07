@@ -1,4 +1,4 @@
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 use crate::{
     datatype::CompositeValue,
@@ -9,7 +9,7 @@ use crate::{
 };
 
 /// Axis in cartesian coordinate.
-#[derive(Serialize)]
+#[derive(Serialize,Clone,Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Axis {
     /// Type of axis.
