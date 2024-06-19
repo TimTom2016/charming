@@ -327,6 +327,9 @@ pub struct Chart {
 
     #[serde(skip_serializing)]
     geo_maps: Vec<GeoMap>,
+    
+    #[serde(skip_serializing_if="Clone::clone")]
+    animation: bool,
 }
 
 impl Chart {
@@ -360,6 +363,7 @@ impl Chart {
             aria: None,
             series: vec![],
             geo_maps: vec![],
+            animation: true,
         }
     }
 
@@ -500,6 +504,11 @@ impl Chart {
 
     pub fn geo_map<M: Into<GeoMap>>(mut self, map: M) -> Self {
         self.geo_maps.push(map.into());
+        self
+    }
+
+    pub fn animation(mut self,animate:bool) -> Self {
+        self.animation = animate;
         self
     }
 
